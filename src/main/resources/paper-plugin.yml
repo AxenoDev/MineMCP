@@ -1,0 +1,7 @@
+name: MineMCP
+version: '1.0.0'
+main: me.axeno.minemcp.MineMCP
+api-version: '1.21'
+load: STARTUP
+authors: [ axeno ]
+description: Minecraft bridge for AI-driven server control and automation

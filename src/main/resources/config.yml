@@ -1,0 +1,3 @@
+server:
+  token: "your-server-token-here"
+  port: 3000

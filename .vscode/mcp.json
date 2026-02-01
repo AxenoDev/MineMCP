@@ -1,0 +1,7 @@
+{
+    "servers": {
+        "minemcp": {
+            "url": "http://localhost:3001/sse?token=eyJhbGciOi",
+        }
+    }
+}
