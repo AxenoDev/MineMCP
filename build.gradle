@@ -5,7 +5,29 @@ plugins {
 }
 
 group = 'me.axeno'
-version = '1.0.0'
+version = getVersionFromGit()
+
+def getVersionFromGit() {
+    try {
+        def stdout = new ByteArrayOutputStream()
+        project.exec {
+            commandLine 'git', 'describe', '--tags', '--always'
+            standardOutput = stdout
+            errorOutput = new ByteArrayOutputStream()
+            ignoreExitValue = true
+        }
+        def gitVersion = stdout.toString().trim()
+
+        if (gitVersion.isEmpty() || gitVersion.startsWith("fatal")) {
+            return "1.0.0-dev"
+        }
+
+        return gitVersion.startsWith('v') ? gitVersion.substring(1) : gitVersion
+    } catch (Exception e) {
+        println "Failed to get version from git: ${e.message}"
+        return "1.0.0-dev"
+    }
+}
 
 repositories {
     mavenCentral()
@@ -31,7 +53,7 @@ tasks {
 
 tasks.shadowJar {
     archiveBaseName.set('MineMCP')
-    archiveVersion.set('1.0.0')
+    archiveVersion.set(project.version.toString())
     mergeServiceFiles()
 }
 
@@ -65,3 +87,10 @@ processResources {
         expand props
     }
 }
+
+tasks.register('printVersion') {
+    doLast {
+        println "MineMCP Version: ${version}"
+    }
+}
+
