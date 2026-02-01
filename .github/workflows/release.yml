@@ -1,8 +1,9 @@
 name: Create Release
 
 on:
-  release:
-    types: [created, edited, published, prereleased]
+  push:
+    tags:
+      - "v*"
 
 permissions:
   contents: write
@@ -49,5 +50,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: ${{ steps.find_jar.outputs.JAR_PATH }}
+          draft: true
+          generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
