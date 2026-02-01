@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'me.axeno'
-version = getVersionFromGit()
+version = System.getenv("CI_VERSION") ?: getVersionFromGit()
 
 def getVersionFromGit() {
     try {

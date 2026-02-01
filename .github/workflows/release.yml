@@ -28,15 +28,17 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Build with Gradle
-        run: ./gradlew clean build shadowJar
-
       - name: Get version from tag
         id: get_version
         run: |
           VERSION=${GITHUB_REF#refs/tags/v}
           echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
           echo "Building version: $VERSION"
+
+      - name: Build with Gradle
+        env:
+          CI_VERSION: ${{ steps.get_version.outputs.VERSION }}
+        run: ./gradlew clean build shadowJar
 
       - name: Find JAR file
         id: find_jar
