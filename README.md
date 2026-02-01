@@ -6,15 +6,6 @@
 
 A Minecraft Paper plugin that implements the [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server, enabling AI agents to control and monitor a Minecraft 1.21 server via HTTP.
 
-## 🌟 Features
-
-- **MCP 2024-11-05 Spec Compliance**: Full implementation of the Model Context Protocol
-- **HTTP/SSE Communication**: Javalin-based HTTP server with Server-Sent Events for bidirectional communication
-- **Comprehensive Tool Set**: 12+ tools for complete server control
-- **Thread-Safe Operations**: All Minecraft operations execute safely on the Bukkit main thread
-- **Token-Based Authentication**: Secure access control via Bearer tokens
-- **Real-Time Monitoring**: SSE endpoint for live server events
-
 ## 🛠️ Available Tools
 
 ### World Manipulation
